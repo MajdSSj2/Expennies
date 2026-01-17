@@ -13,10 +13,10 @@ return [
     'migrations_paths'        => [
         'Migrations' => __DIR__ . '/../migrations',
     ],
-    'all_or_nothing'          => true,
-    'transactional'           => true,
+    'all_or_nothing' => true,
+    'transactional' => true,
     'check_database_platform' => true,
-    'organize_migrations'     => 'none',
-    'connection'              => null,
-    'em'                      => null,
+    'organize_migrations' => 'none',
+    'connection' => null,
+    'em' => null,
 ];
