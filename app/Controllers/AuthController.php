@@ -13,8 +13,9 @@ use Valitron\Validator;
 
 class AuthController
 {
-    public function __construct(private readonly Twig          $twig,
-                                private readonly EntityManager $entityManager,
+    public function __construct(
+        private readonly Twig $twig,
+         private readonly EntityManager $entityManager,
     )
     {
     }
@@ -26,6 +27,7 @@ class AuthController
 
     public function registerView(Request $request, Response $response): Response
     {
+
         return $this->twig->render($response, 'auth/register.twig');
     }
 
@@ -36,19 +38,22 @@ class AuthController
 
 
         $user = new User();
+
         $v = new Validator($data);
+
         $v->rule('required', ['name', 'email', 'password', 'confirmPassword']);
         $v->rule('email', 'email');
         $v->rule('equals', 'password', 'confirmPassword');
         $v->rule(fn($field, $value, $params, $fields) =>
-            ! $this->entityManager->getRepository(User::class)
-                ->count(['email' => $value]), 'email')
-                ->message('Please enter a valid email address');
+            !$this->entityManager->getRepository(User::class)
+            ->count(['email' => $value]), 'email')
+            ->message('Please enter a valid email address');
         if ($v->validate()) {
             echo 'passed';
-        }else{
-           throw new ValidationException($v->errors(), 'Validation failed', '422');
+        } else {
+            throw new ValidationException($v->errors(), 'Validation failed', '422');
         }
+
         $user->setEmail($data['email']);
 
         $user->setPassword(Password_hash($data['password'], PASSWORD_BCRYPT));

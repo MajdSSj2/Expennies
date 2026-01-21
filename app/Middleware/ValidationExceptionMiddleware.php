@@ -19,8 +19,10 @@ class ValidationExceptionMiddleware implements MiddlewareInterface
     {
         try {
             return $handler->handle($request);
-        }catch (ValidationException $ex){
+        } catch (ValidationException $ex) {
 
+            $_SESSION['errors'] = $ex->errors;
+            $_SESSION['old'] = $request->getParsedBody();
             $response = $this->responseFactory->createResponse();
 
             $referer = $request->getServerParams()['HTTP_REFERER'];
