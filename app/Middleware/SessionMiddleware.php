@@ -21,6 +21,10 @@ class SessionMiddleware implements MiddlewareInterface
             throw new SessionException('Headers have already been started');
         }
 
+        session_set_cookie_params(
+            ['secure' => true, 'httponly' => true, 'samesite' => 'lax'],
+        );
+
         session_start();
 
 
@@ -28,5 +32,7 @@ class SessionMiddleware implements MiddlewareInterface
         session_write_close();
 
         return $response;
+
+
     }
 }

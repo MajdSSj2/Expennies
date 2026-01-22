@@ -66,4 +66,36 @@ class AuthController
 
         return $response->withHeader('Content-Type', 'application/json');
     }
+    public function login(Request $request, Response $response): Response
+    {
+        $data = $request->getParsedBody();
+
+        $v = new Validator($data);
+        $v->rule('required', ['email', 'password']);
+        $v->rule('email', 'email');
+
+        if (! $v->validate()) {
+            throw new ValidationException($v->errors(), 'Validation failed', '422');
+        }
+
+        $user = $this->entityManager
+            ->getRepository(User::class)
+            ->findOneBy(['email' => $data['email']]);
+
+        if (!$user || !password_verify($data['password'], $user->getPassword())) {
+            throw new ValidationException(
+                ['error' => ['validation error']],
+                'Email or password is incorrect',
+                '401'
+            );
+        }
+
+        session_regenerate_id();
+        $_SESSION['user'] = $user->getId();
+
+        return $response
+            ->withHeader('Location', '/')
+            ->withStatus(302);
+    }
+
 }
