@@ -7,7 +7,7 @@
     "build": "encore production --progress"
   },
   "devDependencies": {
-    "@popperjs/core": "^2.11.6",
+    "@popperjs/core": "^2.11.8",
     "@symfony/webpack-encore": "^4.0.0",
     "bootstrap": "^5.2.1",
     "file-loader": "^6.2.0",

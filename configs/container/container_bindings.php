@@ -3,7 +3,11 @@
 declare(strict_types=1);
 
 use App\Config;
+use App\Contracts\AuthServiceInterface;
+use App\Contracts\UserServiceInterface;
 use App\Enum\AppEnvironment;
+use App\services\AuthService;
+use App\services\UserService;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use Psr\Container\ContainerInterface;
@@ -70,5 +74,7 @@ return [
         new EntrypointLookup(BUILD_PATH . '/entrypoints.json'),
         $container->get('webpack_encore.packages')
     ),
-    ResponseFactoryInterface::class => fn(App $app) => $app->getResponseFactory()
+    ResponseFactoryInterface::class => fn(App $app) => $app->getResponseFactory(),
+    AuthServiceInterface::class => fn(ContainerInterface $container) => $container->get(AuthService::class),
+    UserServiceInterface::class => fn(ContainerInterface $container) => $container->get(UserService::class),
 ];

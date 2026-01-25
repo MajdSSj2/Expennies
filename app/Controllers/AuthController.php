@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Contracts\AuthServiceInterface;
 use App\Entity\User;
 use App\Exceptions\ValidationException;
 use Doctrine\ORM\EntityManager;
@@ -14,8 +15,9 @@ use Valitron\Validator;
 class AuthController
 {
     public function __construct(
-        private readonly Twig $twig,
-         private readonly EntityManager $entityManager,
+        private readonly Twig                 $twig,
+        private readonly EntityManager        $entityManager,
+        private readonly AuthServiceInterface $auth,
     )
     {
     }
@@ -44,8 +46,7 @@ class AuthController
         $v->rule('required', ['name', 'email', 'password', 'confirmPassword']);
         $v->rule('email', 'email');
         $v->rule('equals', 'password', 'confirmPassword');
-        $v->rule(fn($field, $value, $params, $fields) =>
-            !$this->entityManager->getRepository(User::class)
+        $v->rule(fn($field, $value, $params, $fields) => !$this->entityManager->getRepository(User::class)
             ->count(['email' => $value]), 'email')
             ->message('Please enter a valid email address');
         if ($v->validate()) {
@@ -66,36 +67,30 @@ class AuthController
 
         return $response->withHeader('Content-Type', 'application/json');
     }
+
     public function login(Request $request, Response $response): Response
     {
         $data = $request->getParsedBody();
-
         $v = new Validator($data);
         $v->rule('required', ['email', 'password']);
         $v->rule('email', 'email');
 
-        if (! $v->validate()) {
+        if (!$v->validate()) {
             throw new ValidationException($v->errors(), 'Validation failed', '422');
         }
 
-        $user = $this->entityManager
-            ->getRepository(User::class)
-            ->findOneBy(['email' => $data['email']]);
-
-        if (!$user || !password_verify($data['password'], $user->getPassword())) {
-            throw new ValidationException(
-                ['error' => ['validation error']],
-                'Email or password is incorrect',
-                '401'
-            );
+        if (!$this->auth->attemptLogin($data)) {
+            throw new ValidationException(['error' => 'incorrect username or password'], 'Invalid credentials', '401');
         }
-
-        session_regenerate_id();
-        $_SESSION['user'] = $user->getId();
 
         return $response
             ->withHeader('Location', '/')
             ->withStatus(302);
     }
 
+    public function logout(Request $request, Response $response) : Response
+    {
+        $this->auth->logout();
+        return $response->withHeader('Location', '/login')->withStatus(302);
+    }
 }
