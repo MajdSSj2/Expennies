@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Contracts\AuthServiceInterface;
+use App\Contracts\SessionInterface;
 use App\Entity\User;
 use App\Exceptions\ValidationException;
 use Doctrine\ORM\EntityManager;

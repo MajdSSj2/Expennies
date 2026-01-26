@@ -5,9 +5,13 @@ declare(strict_types=1);
 use App\Auth;
 use App\Config;
 use App\Contracts\AuthServiceInterface;
+use App\Contracts\SessionInterface;
 use App\Contracts\UserServiceInterface;
+use App\DataObjects\SessionConfig;
 use App\Enum\AppEnvironment;
+use App\Enum\SameSite;
 use App\services\UserService;
+use App\Session;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use Psr\Container\ContainerInterface;
@@ -76,4 +80,12 @@ return [
     ResponseFactoryInterface::class => fn(App $app) => $app->getResponseFactory(),
     AuthServiceInterface::class => fn(ContainerInterface $container) => $container->get(Auth::class),
     UserServiceInterface::class => fn(ContainerInterface $container) => $container->get(UserService::class),
+
+    SessionInterface::class => fn(Config $config) => new Session(new SessionConfig(
+        $config->get('session.name', ''),
+        $config->get('session.secure', true),
+        $config->get('session.httpOnly', true),
+        SameSite::from($config->get('session.samesite', 'lax')),
+    )),
+
 ];
