@@ -10,7 +10,7 @@ use App\Contracts\UserServiceInterface;
 use App\DataObjects\SessionConfig;
 use App\Enum\AppEnvironment;
 use App\Enum\SameSite;
-use App\services\UserService;
+use App\Services\UserService;
 use App\Session;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
@@ -83,6 +83,7 @@ return [
 
     SessionInterface::class => fn(Config $config) => new Session(new SessionConfig(
         $config->get('session.name', ''),
+        $config->get('session.flash_name', 'flash'),
         $config->get('session.secure', true),
         $config->get('session.httpOnly', true),
         SameSite::from($config->get('session.samesite', 'lax')),

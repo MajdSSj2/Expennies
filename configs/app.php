@@ -29,6 +29,7 @@ return [
     ],
     'session' => [
         'name' => $appSnakeCaseName. '_session',
+        'flash_name' => 'flash',
         'httponly' => true,
         'secure' => true,
         'samesite' => 'lax'

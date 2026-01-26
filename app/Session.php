@@ -67,13 +67,26 @@ class Session implements SessionInterface
         return $this->has($key) ? $_SESSION[$key] : $default;
     }
 
-    public function put(string $key, int $value): void
+    public function put(string $key, mixed $value): void
     {
         $_SESSION[$key] = $value;
     }
 
-    private function has(string $key): bool
+    public function has(string $key): bool
     {
         return array_key_exists($key, $_SESSION);
+    }
+
+    public function flash(string $key, array $value): void
+    {
+        $_SESSION[$this->config->flashName][$key] = $value;
+    }
+
+    public function getFlash(string $key): array
+    {
+        $messages = $_SESSION[$this->config->flashName][$key] ?? [];
+        unset($_SESSION[$this->config->flashName][$key]);
+
+        return $messages;
     }
 }

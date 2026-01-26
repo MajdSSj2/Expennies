@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="422fb097-38ed-4d7b-a6b6-1883b3b69f1d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/expennies.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/expennies.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/middleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/middleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/SessionInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/SessionInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DataObjects/SessionConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataObjects/SessionConfig.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enum/SameSite.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enum/SameSite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Middleware/OldDataMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/OldDataMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Middleware/SessionMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/SessionMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Middleware/ValidationErrorsMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ValidationErrorsMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Middleware/ValidationExceptionMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Middleware/ValidationExceptionMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/container/container_bindings.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/container/container_bindings.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +144,8 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "//wsl.localhost/Ubuntu/home/majd/Expennies/resources/js",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -172,7 +179,8 @@
       <workItem from="1768675258219" duration="3491000" />
       <workItem from="1768679117487" duration="251000" />
       <workItem from="1768679576168" duration="115000" />
-      <workItem from="1768679698611" duration="4853000" />
+      <workItem from="1768679698611" duration="5149000" />
+      <workItem from="1769443107944" duration="6060000" />
     </task>
     <servers />
   </component>

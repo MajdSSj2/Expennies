@@ -7,4 +7,5 @@ enum SameSite : string
     CASE lax = 'lax';
     CASE strict = 'strict';
     CASE none = 'none';
+
 }

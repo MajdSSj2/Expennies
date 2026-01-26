@@ -16,5 +16,11 @@ interface SessionInterface
 
     public function get(string $key, mixed $default = null) : mixed;
 
-    public function put(string $key, int $value): void;
+    public function put(string $key, mixed $value): void;
+
+    public function has(string $key): bool;
+
+    public function flash(string $key, array $value): void;
+
+    public function getFlash(string $key): array;
 }

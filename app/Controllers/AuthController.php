@@ -45,7 +45,7 @@ class AuthController
 
         $v->rule('required', ['name', 'email', 'password', 'confirmPassword']);
         $v->rule('email', 'email');
-        $v->rule('equals', 'password', 'confirmPassword');
+        $v->rule('equals', 'confirmPassword', 'password')->label('Confirm Password');
         $v->rule(fn($field, $value, $params, $fields) => !$this->entityManager->getRepository(User::class)
             ->count(['email' => $value]), 'email')
             ->message('User with this email already exists');

@@ -24,6 +24,9 @@ class SessionMiddleware implements MiddlewareInterface
 
         $response = $handler->handle($request);
 
+        if ($request->getMethod() === 'GET') {
+            $this->session->put('previousUrl', (string)$request->getUri());
+        }
         $this->session->save();
 
         return $response;
