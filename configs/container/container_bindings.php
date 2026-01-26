@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
+use App\Auth;
 use App\Config;
 use App\Contracts\AuthServiceInterface;
 use App\Contracts\UserServiceInterface;
 use App\Enum\AppEnvironment;
-use App\services\AuthService;
 use App\services\UserService;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
@@ -23,7 +23,6 @@ use Symfony\WebpackEncoreBundle\Asset\EntrypointLookup;
 use Symfony\WebpackEncoreBundle\Asset\TagRenderer;
 use Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension;
 use Twig\Extra\Intl\IntlExtension;
-
 use function DI\create;
 
 return [
@@ -75,6 +74,6 @@ return [
         $container->get('webpack_encore.packages')
     ),
     ResponseFactoryInterface::class => fn(App $app) => $app->getResponseFactory(),
-    AuthServiceInterface::class => fn(ContainerInterface $container) => $container->get(AuthService::class),
+    AuthServiceInterface::class => fn(ContainerInterface $container) => $container->get(Auth::class),
     UserServiceInterface::class => fn(ContainerInterface $container) => $container->get(UserService::class),
 ];

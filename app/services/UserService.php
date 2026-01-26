@@ -24,4 +24,11 @@ class UserService implements UserServiceInterface{
             ->getRepository(User::class)
             ->findOneBy(['email' => $email]);
     }
+
+    public function getByCredentials(array $credentials): ?UserInterface
+    {
+        return $this->entityManager
+            ->getRepository(User::class)
+            ->findOneBy(['email' => $credentials['email']]);
+    }
 }

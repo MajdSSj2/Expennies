@@ -2,9 +2,10 @@
 
 namespace App\Exceptions;
 
+use RuntimeException;
 use Throwable;
 
-class ValidationException extends \RuntimeException
+class ValidationException extends RuntimeException
 {
 
     public function __construct(

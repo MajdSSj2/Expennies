@@ -18,13 +18,11 @@ class OldDataMiddleware implements MiddlewareInterface
     {
 
         if (!empty($_SESSION['old'])) {
+
             $old = $_SESSION['old'];
 
-            $sensitiveData = ['password', 'confirmPassword'];
-
-            $old = array_diff_key($old, array_flip($sensitiveData));
-
             $this->twig->getEnvironment()->addGlobal('old', $old);
+            unset($_SESSION['old']);
         }
 
         return $handler->handle($request);

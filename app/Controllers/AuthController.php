@@ -38,7 +38,6 @@ class AuthController
     {
         $data = $request->getParsedBody();
 
-
         $user = new User();
 
         $v = new Validator($data);
@@ -48,11 +47,9 @@ class AuthController
         $v->rule('equals', 'password', 'confirmPassword');
         $v->rule(fn($field, $value, $params, $fields) => !$this->entityManager->getRepository(User::class)
             ->count(['email' => $value]), 'email')
-            ->message('Please enter a valid email address');
-        if ($v->validate()) {
-            echo 'passed';
-        } else {
-            throw new ValidationException($v->errors(), 'Validation failed', '422');
+            ->message('User with this email already exists');
+        if (!$v->validate()) {
+            throw new ValidationException($v->errors());
         }
 
         $user->setEmail($data['email']);
@@ -65,7 +62,7 @@ class AuthController
 
         $this->entityManager->flush();
 
-        return $response->withHeader('Content-Type', 'application/json');
+        return $response;
     }
 
     public function login(Request $request, Response $response): Response
@@ -76,11 +73,11 @@ class AuthController
         $v->rule('email', 'email');
 
         if (!$v->validate()) {
-            throw new ValidationException($v->errors(), 'Validation failed', '422');
+            throw new ValidationException($v->errors());
         }
 
         if (!$this->auth->attemptLogin($data)) {
-            throw new ValidationException(['error' => 'incorrect username or password'], 'Invalid credentials', '401');
+            throw new ValidationException(['email' => ['You have entered an invalid username or password']]);
         }
 
         return $response
@@ -88,7 +85,7 @@ class AuthController
             ->withStatus(302);
     }
 
-    public function logout(Request $request, Response $response) : Response
+    public function logout(Request $request, Response $response): Response
     {
         $this->auth->logout();
         return $response->withHeader('Location', '/login')->withStatus(302);
