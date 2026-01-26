@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Contracts\UserInterface;
 use App\Contracts\UserServiceInterface;
+use App\DataObjects\registerUser;
 use App\Entity\User;
 use Doctrine\ORM\EntityManager;
 
@@ -30,5 +31,22 @@ class UserService implements UserServiceInterface{
         return $this->entityManager
             ->getRepository(User::class)
             ->findOneBy(['email' => $credentials['email']]);
+    }
+
+
+    public function createUser(registerUser $data): UserInterface
+    {
+
+        $user = new User();
+
+        $user->setEmail($data->email);
+        $user->setPassword(Password_hash($data->password, PASSWORD_BCRYPT));
+        $user->setName($data->name);
+
+        $this->entityManager->persist($user);
+
+        $this->entityManager->flush();
+
+        return $user;
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Auth;
 use App\Config;
 use App\Contracts\AuthServiceInterface;
+use App\Contracts\RequestValidatorFactoryInterface;
 use App\Contracts\SessionInterface;
 use App\Contracts\UserServiceInterface;
 use App\DataObjects\SessionConfig;
@@ -12,6 +13,7 @@ use App\Enum\AppEnvironment;
 use App\Enum\SameSite;
 use App\Services\UserService;
 use App\Session;
+use App\Validators\RequestValidatorFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use Psr\Container\ContainerInterface;
@@ -89,4 +91,5 @@ return [
         SameSite::from($config->get('session.samesite', 'lax')),
     )),
 
+    RequestValidatorFactoryInterface::class => fn(ContainerInterface $container) => $container->get(RequestValidatorFactory::class),
 ];
