@@ -3,6 +3,7 @@
 {% block title %}Log In{% endblock %}
 
 {% block content %}
+
     <section class="vh-100 bg-primary bg-gradient">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -16,6 +17,7 @@
                                     Login
                                 </h2>
                                 <form method="post" action="/login">
+                                    {{ csrf.fields | raw }}
                                     <div class="form-outline form-white mb-4">
                                         <input type="email" name="email"
                                                class="form-control form-control-lg {{ errors.email ? 'is-invalid' : '' }}"

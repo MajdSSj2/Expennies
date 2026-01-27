@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Config;
+use App\Middleware\csrfFieldsMiddleware;
 use App\Middleware\OldDataMiddleware;
 use App\Middleware\SessionMiddleware;
 use App\Middleware\ValidationErrorsMiddleware;
@@ -18,6 +19,9 @@ return function (App $app) {
 
     // Twig
     $app->add(TwigMiddleware::create($app, $container->get(Twig::class)));
+
+    $app->add(csrfFieldsMiddleware::class);
+    $app->add('csrf');
     $app->add(OldDataMiddleware::class);
     $app->add(ValidationErrorsMiddleware::class);
     $app->add(ValidationExceptionMiddleware::class);
