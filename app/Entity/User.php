@@ -7,23 +7,21 @@ use App\Contracts\UserInterface;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\ORM\Mapping\PrePersist;
-use Doctrine\ORM\Mapping\PreUpdate;
+use App\Traits\HasTimeStamps;
 use Doctrine\ORM\Mapping\Table;
 
 
 #[HasLifecycleCallbacks]
-
 #[Entity, Table(name: 'users')]
 class User implements UserInterface
 {
+    use HasTimeStamps;
     #[Id, Column(options: ['unsigned' => true]), GeneratedValue]
     private int $id;
 
@@ -33,10 +31,7 @@ class User implements UserInterface
     private string $email;
     #[Column]
     private string $password;
-    #[Column(name: 'created_at')]
-    private Datetime $createdAt;
-    #[Column(name: 'updated_at')]
-    private Datetime $updatedAt;
+
 
     #[OneToMany(mappedBy: 'user', targetEntity: Category::class)]
     private Collection $categories;
@@ -110,14 +105,7 @@ class User implements UserInterface
         return $this;
     }
 
-    #[PrePersist, PreUpdate]
-    public function setTimeStamps(LifecycleEventArgs $args): void
-    {
-        if (! isset($this->createdAt))
-            $this->createdAt = new DateTime();
 
-        $this->updatedAt = new DateTime();
-    }
 
     public function getCategories(): Collection
     {

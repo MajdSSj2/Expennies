@@ -1,1 +1,1 @@
-
+import "../css/auth.scss"

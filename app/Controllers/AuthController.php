@@ -8,11 +8,9 @@ use App\DataObjects\registerUser;
 use App\Exceptions\ValidationException;
 use App\Validators\LoginUserRequestValidator;
 use App\Validators\RegisterUserRequestValidator;
-use Doctrine\ORM\EntityManager;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
-use Valitron\Validator;
 
 
 class AuthController
