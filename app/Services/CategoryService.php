@@ -42,4 +42,9 @@ class CategoryService
         $this->entityManager->remove($cat);
         $this->entityManager->flush();
     }
+
+    public function getById(int $param) : ?Category
+    {
+        return $this->entityManager->getRepository(Category::class)->find($param);
+    }
 }

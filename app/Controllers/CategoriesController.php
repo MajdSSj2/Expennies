@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Contracts\RequestValidatorFactoryInterface;
+use App\responseFormatter;
 use App\Services\CategoryService;
 use App\Validators\CreateCategoryRequestValidator;
 use Slim\Psr7\Request;
@@ -14,7 +15,8 @@ class CategoriesController
     public function __construct(
         private readonly Twig                             $twig,
         private readonly RequestValidatorFactoryInterface $requestValidatorFactory,
-        private readonly CategoryService                  $categoryService
+        private readonly CategoryService                  $categoryService,
+        private readonly responseFormatter                $responseFormatter
     )
     {
     }
@@ -39,8 +41,23 @@ class CategoriesController
 
     public function delete(Request $request, Response $response, array $args): Response
     {
-        $id = (int)$args['id'];
-        $this->categoryService->destroy($id);
+        $this->categoryService->destroy((int)$args['id']);
         return $response->withHeader('Location', "/categories")->withStatus(302);
+    }
+
+    public function show(Request $request, Response $response, array $args): Response
+    {
+        error_log("SHOW ROUTE HIT: " . $args['id']);
+
+        $category = $this->categoryService->getById((int)$args['id']);
+
+        if (!$category) {
+            return $response->withStatus(404);
+        }
+
+        $data = ['id' => $category->getId(), 'name' => $category->getName()];
+
+
+        return $this->responseFormatter->asJson($response, $data);
     }
 }

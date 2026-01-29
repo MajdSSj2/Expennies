@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="422fb097-38ed-4d7b-a6b6-1883b3b69f1d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/AuthServiceInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/AuthServiceInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/UserServiceInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/UserServiceInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/container/container_bindings.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/container/container_bindings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controllers/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/CategoryService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/CategoryService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/categories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/categories/index.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categories/index.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,24 +129,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu/home/majd/Expennies/resources/js&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu/home/majd/Expennies/resources/js",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="\\wsl.localhost\Ubuntu\home\majd\Expennies\resources\js" />
@@ -175,7 +175,8 @@
       <workItem from="1768679576168" duration="115000" />
       <workItem from="1768679698611" duration="5149000" />
       <workItem from="1769443107944" duration="6639000" />
-      <workItem from="1769458076700" duration="3716000" />
+      <workItem from="1769458076700" duration="4038000" />
+      <workItem from="1769710065685" duration="5754000" />
     </task>
     <servers />
   </component>

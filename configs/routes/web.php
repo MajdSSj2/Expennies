@@ -27,5 +27,6 @@ return function (App $app) {
         $categories->get('', [CategoriesController::class, 'index']);
         $categories->post('', [CategoriesController::class, 'store']);
         $categories->delete('/{id}', [CategoriesController::class, 'delete']);
+        $categories->get('/{id}', [CategoriesController::class, 'show']);
     })->add(AuthMiddleware::class);
 };
